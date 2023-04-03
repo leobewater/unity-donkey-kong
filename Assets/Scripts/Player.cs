@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         Vector3 size = collider.bounds.size;
         size.y += 0.1f;
         size.x /= 2f;
-        int amount = Physics2D.OverlapBoxNonAlloc(transform.position, size, 0f, overlaps);
+        int amount = Physics2D.OverlapBoxNonAlloc(transform.position, size, 0, overlaps);
 
         for (int i = 0; i < amount; i++) {
             // What did the player overlap with?
