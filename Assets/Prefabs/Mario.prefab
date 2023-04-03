@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 039eb3fce2dba40c8be1082114979c19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -161,5 +161,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df0acd2005704f08a5fe5c00aaeca18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runSprites:
+  - {fileID: 21300000, guid: 039eb3fce2dba40c8be1082114979c19, type: 3}
+  - {fileID: 21300000, guid: 1cd536bf84a08463092dd43c1fa3ff04, type: 3}
+  - {fileID: 21300000, guid: 039eb3fce2dba40c8be1082114979c19, type: 3}
+  - {fileID: 21300000, guid: c75dab4e55d9d4a2588c8514f4c479bf, type: 3}
+  climbSprite: {fileID: 21300000, guid: b1de03e76c7774b4b8f8fccad86993da, type: 3}
   moveSpeed: 3
   jumpStrength: 4

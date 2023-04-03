@@ -4,27 +4,48 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private SpriteRenderer spriteRenderer;
+    public Sprite[] runSprites;
+    public Sprite climbSprite;
+    private int spriteIndex;
+
     private new Rigidbody2D rigidbody;
     private new Collider2D collider;
 
-	// max 4 type of game objects going to be overlapping with the player
+    // max 4 type of game objects going to be overlapping with the player
     private Collider2D[] overlaps = new Collider2D[4];
     private Vector2 direction;
 
-    public float moveSpeed = 1f;
-    public float jumpStrength = 1f;
-
     private bool grounded;
+    private bool climbing;
+
+    public float moveSpeed = 3f;
+    public float jumpStrength = 4f;
 
     private void Awake() {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
-        
+    }
 
+    private void OnEnable() {
+        // Set player animation
+        InvokeRepeating(nameof(AnimateSprite), 1f / 12f, 1f / 12f);
+    }
+
+    private void OnDisable() {
+        CancelInvoke();
+    }
+
+    private void Update() {
+        // Check if player is grounded or jumping
+        CheckCollision();
+        SetDirection();
     }
 
     private void CheckCollision() {
         grounded = false;
+        climbing = false;
 
         // Get player collider size and make it slightly taller and narrower for better detection
         Vector3 size = collider.bounds.size;
@@ -42,17 +63,20 @@ public class Player : MonoBehaviour
                 grounded = hit.transform.position.y < (transform.position.y - 0.5f);
                 // When jumping ignore the collision with object is above the player
                 Physics2D.IgnoreCollision(overlaps[i], collider, !grounded);
+            } else if (hit.layer == LayerMask.NameToLayer("Ladder")) {
+                // When touching the ladder
+                climbing = true;
             }
         }
     }
 
-    private void Update() {
-        // Check if player is grounded or jumping
-        CheckCollision();
-
-        // Handle jumping - Project Settings -> Input Manager
-        // No double jumps
-        if (grounded && Input.GetButtonDown("Jump")) {
+    private void SetDirection() {
+        if (climbing) {
+            // Climbing
+            direction.y = Input.GetAxis("Vertical") * moveSpeed;
+        } else if (grounded && Input.GetButtonDown("Jump")) {
+            // Handle jumping - Project Settings -> Input Manager
+            // No double jumps
             direction = Vector2.up * jumpStrength;
         } else {
             // Apply gravity when not jumping
@@ -79,4 +103,29 @@ public class Player : MonoBehaviour
     private void FixedUpdate() {
         rigidbody.MovePosition(rigidbody.position + direction * Time.fixedDeltaTime);
     }
+
+    private void AnimateSprite() {
+        if (climbing) {
+            spriteRenderer.sprite = climbSprite;
+        } else if (direction.x != 0f) {
+            // Only animate the player when moving
+            spriteIndex++;
+
+            if (spriteIndex >= runSprites.Length) {
+                spriteIndex = 0;
+            }
+
+            spriteRenderer.sprite = runSprites[spriteIndex];
+        }
+    }
+
+    //private void OnCollisionEnter2D(Collision2D collision) {
+    //    if (collision.gameObject.CompareTag("Objective")) {
+    //        enabled = false;
+    //        FindObjectOfType<GameManager>().LevelComplete();
+    //    } else if (collision.gameObject.CompareTag("Obstacle")) {
+    //        enabled = false;
+    //        FindObjectOfType<GameManager>().LevelFailed();
+    //    }
+    //}
 }
