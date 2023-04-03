@@ -1447,6 +1447,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3459690729875615717, guid: 4b7c47032318c440b92f1102970a6bcf, type: 3}
+      propertyPath: m_Size.y
+      value: 1.12
+      objectReference: {fileID: 0}
     - target: {fileID: 3602453485303144947, guid: 4b7c47032318c440b92f1102970a6bcf, type: 3}
       propertyPath: m_Name
       value: Mario
