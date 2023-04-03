@@ -119,13 +119,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision) {
-    //    if (collision.gameObject.CompareTag("Objective")) {
-    //        enabled = false;
-    //        FindObjectOfType<GameManager>().LevelComplete();
-    //    } else if (collision.gameObject.CompareTag("Obstacle")) {
-    //        enabled = false;
-    //        FindObjectOfType<GameManager>().LevelFailed();
-    //    }
-    //}
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag("Objective")) {
+            enabled = false;
+            FindObjectOfType<GameManager>().LevelComplete();
+        } else if (collision.gameObject.CompareTag("Obstacle")) {
+            enabled = false;
+            FindObjectOfType<GameManager>().LevelFailed();
+        }
+    }
 }
