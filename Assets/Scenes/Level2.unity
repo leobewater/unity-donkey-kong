@@ -1606,7 +1606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 8605355163446417696, guid: 58de8dd791b8647e9bff92c9f1d926d8, type: 3}
   minTime: 2
-  maxTime: 4
+  maxTime: 7
 --- !u!4 &1594006057
 Transform:
   m_ObjectHideFlags: 0
@@ -1814,7 +1814,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3382216170260634315, guid: 4b7c47032318c440b92f1102970a6bcf, type: 3}
       propertyPath: m_Constraints
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3459690729875615717, guid: 4b7c47032318c440b92f1102970a6bcf, type: 3}
       propertyPath: m_Size.y

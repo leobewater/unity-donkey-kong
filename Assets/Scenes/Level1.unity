@@ -1461,8 +1461,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8605355163446417696, guid: 58de8dd791b8647e9bff92c9f1d926d8, type: 3}
-  minTime: 2
-  maxTime: 4
+  minTime: 3
+  maxTime: 10
 --- !u!4 &1594006057
 Transform:
   m_ObjectHideFlags: 0
