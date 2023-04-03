@@ -9,23 +9,20 @@ public class GameManager : MonoBehaviour
     private int lives;
     private int score;
 
-    private void Start()
-    {
+    private void Start() {
         DontDestroyOnLoad(gameObject);
         NewGame();
     }
 
-    private void NewGame()
-    {
+    private void NewGame() {
         lives = 3;
         score = 0;
 
         // Load level...
-		        LoadLevel(1);
+        LoadLevel(1);
     }
 
-    private void LoadLevel(int index)
-    {
+    private void LoadLevel(int index) {
         level = index;
 
         Camera camera = Camera.main;
@@ -39,12 +36,11 @@ public class GameManager : MonoBehaviour
         Invoke(nameof(LoadScene), 1f);
     }
 
-    private void LoadScene()
-    {
+    private void LoadScene() {
         SceneManager.LoadScene(level);
     }
-    public void LevelComplete()
-    {
+
+    public void LevelComplete() {
         score += 1000;
 
         // Load next level...
@@ -57,18 +53,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LevelFailed()
-    {
+    public void LevelFailed() {
         lives--;
 
-        if (lives <= 0)
-        {
+        if (lives <= 0) {
             NewGame();
-        }
-        else
-        {
+        } else {
             // Reload current level
-			           LoadLevel(level);
+            LoadLevel(level);
         }
     }
 
